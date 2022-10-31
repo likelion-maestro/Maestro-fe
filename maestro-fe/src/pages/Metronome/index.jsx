@@ -1,6 +1,6 @@
 import React from "react";
 
-const Main = () => {
+const Metronome = () => {
   return (
     <>
       <div>성공</div>
@@ -8,4 +8,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Metronome;
