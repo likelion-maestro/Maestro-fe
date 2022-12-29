@@ -6,7 +6,8 @@ import Singinfo from "./components/singInfo";
 import ControlBox from "./components/controlBox";
 import BeatBox from "./components/beatBox";
 import PlayBox from "./components/playBox";
-const Metronome = () => {
+
+const Metronome = (props) => {
   return (
     <>
       <Layout>
