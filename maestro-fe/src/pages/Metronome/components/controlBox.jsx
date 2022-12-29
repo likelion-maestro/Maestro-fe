@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import { useState } from "react";
+import "./ControlBar.css";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 //BPM 조절 박스 전체 정렬을 위한 컴포넌트
@@ -51,43 +51,22 @@ const IconWrraper = styled.div`
   padding-top: 10px;
 `;
 
-//빠르기를 조절하는 Seek바 영역을 포함하는 컴포넌트
-const FastControlWrapper = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: center;
-`;
-
-//빠르기 조절 Seek바 컴포넌트
-const FastControlBar = styled.div`
-  width: 90%;
-  height: auto;
-  border: 1px solid #f2f4f6;
-`;
-
-//Seek바에서 움직일 수 있는 조절 버튼 컴포넌트
-//틀만 만든것이고 Seek 바 같은 경우, 만드는 공부가 필요
-const FastControlButton = styled.div`
-  width: 18px;
-  height: 18px;
-  border-radius: 100%;
-  background-color: #564b9a;
-  position: absolute;
-  top: 505px;
-`;
-
 const ControlBox = (props) => {
   //BPM 수치 조절하는 useState
   const [BPM, setBPM] = React.useState(100);
 
   //Plus 버튼 누를시 counter 1증가
   function PlusClick() {
-    setBPM(BPM + 1);
+    if (BPM < 200) {
+      setBPM(BPM + 1);
+    }
   }
 
+  //Minus 버튼 누릴시 counter 1감소
   function MinusClick() {
-    setBPM(BPM - 1);
+    if (BPM > 0) {
+      setBPM(BPM - 1);
+    }
   }
 
   return (
@@ -105,10 +84,17 @@ const ControlBox = (props) => {
             <AiOutlinePlus onClick={PlusClick} size="35" />
           </IconWrraper>
         </BpmControlBox>
-        <FastControlWrapper>
-          <FastControlBar />
-          <FastControlButton />
-        </FastControlWrapper>
+
+        <input
+          type="range"
+          min={0}
+          max={200}
+          step={5}
+          value={BPM}
+          onChange={(event) => {
+            setBPM(event.target.valueAsNumber);
+          }}
+        />
       </AllBpmConstrolBox>
     </>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MdOutlineWavingHand } from "react-icons/md";
+import { FaDrum } from "react-icons/fa";
 
 //비트에 관련된 3개의 정보를 모두 포함한 컴포넌트
 const AllBoxWrapper = styled.div`
@@ -49,7 +49,7 @@ const BeatBox = () => {
         <EachBoxWrapper>
           <EachBoxTitle>Manual</EachBoxTitle>
           <EachBoxContent>
-            <MdOutlineWavingHand size="29" />
+            <FaDrum size="29" />
           </EachBoxContent>
         </EachBoxWrapper>
       </AllBoxWrapper>

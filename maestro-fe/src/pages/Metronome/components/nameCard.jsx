@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FaShareSquare } from "react-icons/fa";
+import { FiShare2 } from "react-icons/fi";
 
 //최상단 이름 구간을 포함하는 컴포넌트
 const AllNameWrapper = styled.div`
@@ -46,7 +46,7 @@ const NameCard = (props) => {
         <IconPeopleWrapper />
         <NameWrapper>{props.name} </NameWrapper>
         <IconPeopleWrapper>
-          <FaShareSquare size="20" />
+          <FiShare2 size="20" />
           <People>{props.people}</People>
         </IconPeopleWrapper>
       </AllNameWrapper>
