@@ -3,15 +3,17 @@ import styled from "styled-components";
 import Metronome from "../../assets/Metronome1.png";
 import Me from "../../assets/Me.png";
 import Menu from "../../assets/Menu.png";
-import Group from "../../assets/Group.png";
+import Team from "../../assets/Team.png";
 
 const Container = styled.div`
   position: absolute;
   background-color: #ffffff;
+  top: 743px;
   height: 109px;
   width: 390px;
   border-radius: 30px 30px 0px 0px;
   box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 `;
 const StyledImage1 = styled.div`
   background-image: url(${Metronome});
@@ -21,11 +23,11 @@ const StyledImage1 = styled.div`
   cursor: pointer;
 
   &:hover {
-    filter: brightness(0.5);
+    filter: brightness(0.7);
   }
 `;
 const StyledImage2 = styled.div`
-  background-image: url(${Group});
+  background-image: url(${Team});
   z-index: 1px;
   width: 47px;
   height: 64px;

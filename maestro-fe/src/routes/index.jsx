@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
 // <Route exact path="/주소" element={<띄우고 싶은 페이지(컴포넌트) />} />
 const Router = () => (
   <BrowserRouter>
+    <GlobalStyle />
     <Routes>
       <Route exact path="/Metronome" element={<Metronome />} />
       <Route exact path="/LandingPage" element={<LandingPage />} />
