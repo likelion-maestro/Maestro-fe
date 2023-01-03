@@ -4,11 +4,12 @@ import Metronome from "../../assets/Metronome1.png";
 import Me from "../../assets/Me.png";
 import Menu from "../../assets/Menu.png";
 import Team from "../../assets/Team.png";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   background-color: #ffffff;
-  top: 743px;
+  bottom: 0px;
   height: 109px;
   width: 390px;
   border-radius: 30px 30px 0px 0px;
@@ -62,12 +63,24 @@ const Wrapper = styled.div`
   justify-content: space-around;
   padding-top: 22px;
 `;
+
 const Navigate = () => {
+  //페이지 이동 함수 생성(useNavigate 사용)
+  const navigate = useNavigate();
+
+  const navigateToMetronome = () => {
+    navigate("/Metronome");
+  };
+
+  const navigateToTeamList = () => {
+    navigate("/TeamList");
+  };
+
   return (
     <Container>
       <Wrapper>
-        <StyledImage1 />
-        <StyledImage2 />
+        <StyledImage1 onClick={navigateToMetronome} />
+        <StyledImage2 onClick={navigateToTeamList} />
         <StyledImage3 />
         <StyledImage4 />
       </Wrapper>

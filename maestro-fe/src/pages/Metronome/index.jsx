@@ -6,6 +6,7 @@ import Singinfo from "./components/singInfo";
 import ControlBox from "./components/controlBox";
 import BeatBox from "./components/beatBox";
 import PlayBox from "./components/playBox";
+import Navigate from "../../maestro-ui/Navigate";
 
 const Metronome = (props) => {
   return (
@@ -17,6 +18,7 @@ const Metronome = (props) => {
         <ControlBox />
         <BeatBox />
         <PlayBox PlayTime="00:37" />
+        <Navigate />
       </Layout>
     </>
   );
