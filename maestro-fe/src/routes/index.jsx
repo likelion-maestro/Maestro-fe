@@ -4,11 +4,13 @@ import LandingPage from "../pages/LandingPage";
 import Navigate from "../maestro-ui/Navigate";
 import TeamList from "../pages/TeamPage/TeamList";
 import TeamMake from "./../pages/TeamPage/TeamMake/index";
+import TeamEdit from "../pages/TeamPage/TeamEdit";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 @import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Orbitron:wght@900&display=swap");
-    body{
+ import TeamEdit from './../pages/TeamPage/TeamEdit/index';
+   body{
      
         padding: 0;
         margin: 0;
@@ -27,6 +29,7 @@ const Router = () => (
       <Route exact path="/LandingPage" element={<LandingPage />} />
       <Route exact path="/Navigate" element={<Navigate />} />
       <Route exact path="/TeamList" element={<TeamList />} />
+      <Route exact path="/TeamEdit" element={<TeamEdit />} />
       <Route exact path="/TeamMake" element={<TeamMake />} />
     </Routes>
   </BrowserRouter>

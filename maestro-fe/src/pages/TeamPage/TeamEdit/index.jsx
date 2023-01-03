@@ -1,12 +1,15 @@
-import React from "react";
+import { React, useState } from "react";
 import Layout from "../../../maestro-ui/Layout";
 import styled from "styled-components";
-import { AiOutlinePlus } from "react-icons/ai";
-import { TbSettings } from "react-icons/tb";
 import Navigate from "./../../../maestro-ui/Navigate/index";
+import Button from "../../../maestro-ui/Button";
+import { AiFillStar } from "react-icons/ai";
+import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: row;
   position: relative;
   margin-top: ${(props) => (props.margintop ? props.margintop : "10px")};
   width: 390px;
@@ -28,55 +31,58 @@ const Header = styled.div`
   padding: 45px;
   width: 100%;
   margin-left: 85%;
-
   text-align: center;
   font-weight: 800;
   font-size: 18px;
   line-height: 18px;
 `;
-const IconWrapper = styled.div`
-  position: relative;
-  left: ${(props) => (props.left ? props.left : "100px")};
-  color: #88919b;
-`;
 
 const TextWrapper = styled.div`
   position: relative;
   top: 22px;
-  left: 86px;
+  left: 75px;
   font-weight: 800;
   font-size: 16px;
   color: ${(props) => (props.color ? props.color : "#2F343D")};
 `;
-
-const TeamList = () => {
+const ButtonWrapper = styled.div`
+  position: relative;
+  top: 400px;
+`;
+const IconWrapper = styled.div`
+  position: relative;
+  top: ${(props) => (props.top ? props.top : "25px")};
+  left: ${(props) => (props.left ? props.left : "200px")};
+  color: ${({ color }) => (color ? "#564B9A" : "#D9D9D9")};
+`;
+const TeamEdit = () => {
   const navigate = useNavigate();
+  const [color, setColor] = useState(false);
 
-  const onClick1 = () => {
-    navigate("/TeamMake");
-  };
-
-  const onClick2 = () => {
-    navigate("/TeamEdit");
+  const onClickComplete = () => {
+    navigate("/TeamList");
   };
   return (
     <Layout>
-      <Header>
-        팀목록
-        <IconWrapper>
-          <AiOutlinePlus size="22px" onClick={onClick1} />
-        </IconWrapper>
-        <IconWrapper left="110px">
-          <TbSettings size="22px" onClick={onClick2} />
-        </IconWrapper>
-      </Header>
+      <Header>팀목록 편집</Header>
       <Line />
       <Container>
         <TextWrapper>좌승찬 우민성</TextWrapper>
+        <IconWrapper color={color} onClick={() => setColor(!color)}>
+          <AiFillStar size="24px" />
+        </IconWrapper>
+        <IconWrapper top="28px" left="220px">
+          <FaTrashAlt size="16px" />
+        </IconWrapper>
       </Container>
+      <ButtonWrapper>
+        <Button small onClick={onClickComplete}>
+          완료
+        </Button>
+      </ButtonWrapper>
       <Navigate />
     </Layout>
   );
 };
 
-export default TeamList;
+export default TeamEdit;

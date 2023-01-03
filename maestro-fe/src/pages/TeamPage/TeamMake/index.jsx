@@ -3,6 +3,7 @@ import Layout from "../../../maestro-ui/Layout";
 import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import Button from "../../../maestro-ui/Button";
+import { useNavigate } from "react-router-dom";
 
 const Line = styled.div`
   position: relative;
@@ -42,7 +43,9 @@ const TeamName = styled.div`
 `;
 const StyledInput = styled.input`
   @import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Orbitron:wght@900&display=swap");
-  font-family: "NanumGothic", sans-serif;
+  fimport { useNavigate } from 'react-router-dom';
+ontimport { useNavigate } from 'react-router-dom';
+-family: "NanumGothic", sans-serif;
   font-weight: 400;
   font-size: 18px;
   color: #8b959f;
@@ -67,6 +70,7 @@ const ButtonWrapper = styled.div`
   top: 500px;
 `;
 const TeamMake = () => {
+  const navigate = useNavigate();
   const [content, setContent] = useState("");
   const textChange = (e) => {
     if (content.length > 25) {
@@ -77,11 +81,18 @@ const TeamMake = () => {
     }
   };
 
+  const onClickBack = () => {
+    navigate("/TeamList");
+  };
+
+  const onClickComplete = () => {
+    navigate("/TeamList");
+  };
   return (
     <Layout>
       <Header>
         <IconWrapper>
-          <BiArrowBack />
+          <BiArrowBack onClick={onClickBack} />
         </IconWrapper>
         <MakeTeam>팀 만들기</MakeTeam>
       </Header>
@@ -96,7 +107,9 @@ const TeamMake = () => {
         <span>글자수 {content.length}/25</span>
       </Check>
       <ButtonWrapper>
-        <Button large>팀 생성</Button>
+        <Button large onClick={onClickComplete}>
+          팀 생성
+        </Button>
       </ButtonWrapper>
     </Layout>
   );
