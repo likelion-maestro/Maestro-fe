@@ -16,6 +16,7 @@ const BackColor = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: darkgrey;
 `;
 
 const Layout = ({ children }) => (
