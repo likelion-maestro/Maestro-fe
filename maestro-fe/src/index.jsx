@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
 
     html, body, #root {
         height: 100%;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+         user-select:none
     }
 
 
