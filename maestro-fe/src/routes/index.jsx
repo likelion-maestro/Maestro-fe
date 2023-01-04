@@ -9,7 +9,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 @import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Orbitron:wght@900&display=swap");
- import TeamEdit from './../pages/TeamPage/TeamEdit/index';
+ 
    body{
      
         padding: 0;
@@ -26,7 +26,7 @@ const Router = () => (
     <GlobalStyle />
     <Routes>
       <Route exact path="/Metronome" element={<Metronome />} />
-      <Route exact path="/LandingPage" element={<LandingPage />} />
+      <Route exact path="/" element={<LandingPage />} />
       <Route exact path="/Navigate" element={<Navigate />} />
       <Route exact path="/TeamList" element={<TeamList />} />
       <Route exact path="/TeamEdit" element={<TeamEdit />} />
