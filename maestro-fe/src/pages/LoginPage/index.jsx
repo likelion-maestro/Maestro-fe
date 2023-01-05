@@ -72,7 +72,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const onClickBack = () => {
-        navigate("/LandingPage");
+        navigate("/MainPage");
     };
     return (
         <Layout>
