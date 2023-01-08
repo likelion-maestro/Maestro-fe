@@ -43,9 +43,8 @@ const TeamName = styled.div`
 `;
 const StyledInput = styled.input`
   @import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Orbitron:wght@900&display=swap");
-  fimport { useNavigate } from 'react-router-dom';
-ontimport { useNavigate } from 'react-router-dom';
--family: "NanumGothic", sans-serif;
+
+  -family: "NanumGothic", sans-serif;
   font-weight: 400;
   font-size: 18px;
   color: #8b959f;
@@ -57,6 +56,7 @@ ontimport { useNavigate } from 'react-router-dom';
   border-radius: 10px;
   border: none;
 `;
+
 const Check = styled.div`
   font-weight: 400;
   font-size: 14px;

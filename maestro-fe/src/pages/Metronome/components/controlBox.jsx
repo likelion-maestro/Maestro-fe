@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import "./ControlBar.css";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 
 //BPM 조절 박스 전체 정렬을 위한 컴포넌트
 
@@ -53,6 +54,8 @@ const IconWrraper = styled.div`
 
 const ControlBox = (props) => {
   //BPM 수치 조절하는 useState
+
+  /*
   const [BPM, setBPM] = React.useState(100);
 
   //Plus 버튼 누를시 counter 1증가
@@ -68,20 +71,34 @@ const ControlBox = (props) => {
       setBPM(BPM - 1);
     }
   }
+  */
+
+  const BPM = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   return (
     <>
       <AllBpmConstrolBox>
         <BpmControlBox>
           <IconWrraper>
-            <AiOutlineMinus onClick={MinusClick} size="35" />
+            <AiOutlineMinus
+              onClick={() => {
+                dispatch({ type: "1감소" });
+              }}
+              size="35"
+            />
           </IconWrraper>
           <BpmUnit />
           <BpmInfo>
             {BPM} <BpmUnit>BPM</BpmUnit>
           </BpmInfo>
           <IconWrraper>
-            <AiOutlinePlus onClick={PlusClick} size="35" />
+            <AiOutlinePlus
+              onClick={() => {
+                dispatch({ type: "1증가" });
+              }}
+              size="35"
+            />
           </IconWrraper>
         </BpmControlBox>
 
@@ -92,7 +109,8 @@ const ControlBox = (props) => {
           step={5}
           value={BPM}
           onChange={(event) => {
-            setBPM(event.target.valueAsNumber);
+            //setBPM(event.target.valueAsNumber);
+            dispatch({ type: "scroll", changeNum: event.target.valueAsNumber });
           }}
         />
       </AllBpmConstrolBox>

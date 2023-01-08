@@ -74,6 +74,9 @@ const TeamList = () => {
       <Container>
         <TextWrapper>좌승찬 우민성</TextWrapper>
       </Container>
+      <Container>
+        <TextWrapper>좌승찬 우민성</TextWrapper>
+      </Container>
       <Navigate />
     </Layout>
   );
