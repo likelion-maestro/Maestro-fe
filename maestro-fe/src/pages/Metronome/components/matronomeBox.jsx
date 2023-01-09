@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import Maetromome from "./matronome";
 import { useEffect, useState } from "react";
 import { exportStopValue } from "./playBox";
+import axios from "axios";
 
 // 메트로늄 영역의 전체를 아우르는 컴포넌트
 const AllmetroWrapper = styled.div`
@@ -22,23 +23,19 @@ const AllCircleWrapper = styled.div`
   justify-content: space-around;
 `;
 
-///////////////////////이 부분 현재 시도중
 const MetronomeBox = (props) => {
-  /*
-  const [check, chageCheck] = useState(true);
+  const email = localStorage.getItem("email");
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API}/user/getUser`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [email]);
 
-  var chageCircle = setInterval(
-    chageCheck((check) => !check),
-    5000
-  );
-  */
-  ////////////////////////
-
-  //원 개수 임의 지정
-  // 배열 형태로 받으면 그 개수에 따라 원 출력
-  // 5개까진 괜찮은데 이후엔 좀 이상해짐. 이래도 되는건가?
-  //check=>delayTime으로 언제 시작하는지 정해줘야됌.
-  // 뿐만 아니라 maestronome.jsx의 animation-duration부분과 합을 잘 맞추는 계산 식이 필요함.
   const arr = [
     { id: 1, check: "0.5s" },
     { id: 2, check: "1.0s" },

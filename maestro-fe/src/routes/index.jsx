@@ -7,6 +7,7 @@ import TeamMake from "./../pages/TeamPage/TeamMake/index";
 import TeamEdit from "../pages/TeamPage/TeamEdit";
 import LoginPage from "../pages/LoginPage";
 import MainPage from "../pages/MainPage";
+
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -35,6 +36,7 @@ const Router = () => (
       <Route exact path="/TeamMake" element={<TeamMake />} />
       <Route exact path="/LoginPage" element={<LoginPage />} />
       <Route exact path="/MainPage" element={<MainPage />} />
+
     </Routes>
   </BrowserRouter>
 );
