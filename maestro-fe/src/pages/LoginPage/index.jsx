@@ -87,8 +87,6 @@ const LoginPage = () => {
   const onClickSuccess = () => {
     navigate("/Metronome");
   }
-
-
   return (
     <Layout>
       <Header>
