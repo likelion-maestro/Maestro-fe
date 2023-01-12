@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../maestro-ui/Layout";
 import Button from "../../maestro-ui/Button";
@@ -32,19 +33,26 @@ const LoginText = styled.div`
   font-weight: 400;
 `;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.input`
   display: flex;
   width: 330px;
   margin-top: 88px;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
   border-bottom: 1.8px solid #afafaf;
-`;
-
-const InputText = styled.div`
-  display: flex;
+  outline: none;
   font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 14px;
-  color: #b0b7c1;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000000;
+  padding: 7px 5px;
+  :focus {
+    outline: none;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom: 1.8px solid #7000FF;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -74,6 +82,11 @@ const LoginPage = () => {
   const onClickBack = () => {
     navigate("/MainPage");
   };
+
+  const onClickSuccess = () => {
+    navigate("/Metronome");
+  }
+
   return (
     <Layout>
       <Header>
@@ -82,15 +95,11 @@ const LoginPage = () => {
           <LoginText>로그인</LoginText>
         </IconWrapper>
       </Header>
-      <InputWrapper>
-        <InputText>이메일</InputText>
-      </InputWrapper>
-      <InputWrapper>
-        <InputText>비밀번호</InputText>
-      </InputWrapper>
+      <InputWrapper placeholder="이메일"/>
+      <InputWrapper placeholder="비밀번호" type="password"/>
       <ButtonWrapper>
         <Button small>
-          <ButtonText>완료</ButtonText>
+          <ButtonText onClick={onClickSuccess}>완료</ButtonText>
         </Button>
       </ButtonWrapper>
       <ForgotPassword>비밀번호를 잊어버렸어요</ForgotPassword>
