@@ -44,11 +44,15 @@ const TextWrapper = styled.div`
   position: relative;
   top: 22px;
   left: 86px;
-  font-weight: 800;
-  font-size: 16px;
+  font-weight: ${(props) => (props.fontweight ? props.fontweight : "800")};
+  font-size: ${(props) => (props.fontsize ? props.fontsize : "16px")};
   color: ${(props) => (props.color ? props.color : "#2F343D")};
 `;
-
+const Wrapper = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+`;
 const TeamList = () => {
   const navigate = useNavigate();
 
@@ -73,9 +77,25 @@ const TeamList = () => {
       <Line />
       <Container>
         <TextWrapper>좌승찬 우민성</TextWrapper>
+        <Wrapper>
+          <TextWrapper fontweight="400" color="#564B9A">
+            5명
+          </TextWrapper>
+          <TextWrapper fontweight="400" color="#8B949F">
+            / 7명
+          </TextWrapper>
+        </Wrapper>
       </Container>
       <Container>
         <TextWrapper>좌승찬 우민성</TextWrapper>
+        <Wrapper>
+          <TextWrapper fontweight="400" color="#564B9A">
+            5명
+          </TextWrapper>
+          <TextWrapper fontweight="400" color="#8B949F">
+            / 7명
+          </TextWrapper>
+        </Wrapper>
       </Container>
       <Navigate />
     </Layout>
