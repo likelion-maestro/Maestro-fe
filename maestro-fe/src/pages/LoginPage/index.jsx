@@ -46,6 +46,7 @@ const InputWrapper = styled.input`
   font-family: Arial, Helvetica, sans-serif;
   color: #000000;
   padding: 7px 5px;
+
   :focus {
     outline: none;
     border-top-width: 0;
@@ -86,7 +87,6 @@ const LoginPage = () => {
   const onClickSuccess = () => {
     navigate("/Metronome");
   }
-
   return (
     <Layout>
       <Header>
