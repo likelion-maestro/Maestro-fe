@@ -19,6 +19,10 @@ const Button = styled.button`
     background-color: rgba(86, 75, 154, 0.5);
   }
 
+  :disabled {
+    background-color: #dadada;
+  }
+
   ${(props) =>
     props.large &&
     `width:390px;
