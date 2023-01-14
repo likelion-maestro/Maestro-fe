@@ -4,6 +4,7 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../maestro-ui/Layout";
 import Button from "../../maestro-ui/Button";
+import { useState, useEffect } from "react";
 
 const Header = styled.div`
   display: flex;
@@ -32,19 +33,27 @@ const LoginText = styled.div`
   font-weight: 400;
 `;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.input`
   display: flex;
   width: 330px;
-  margin-top: 88px;
+  margin-top: 68px;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
   border-bottom: 1.8px solid #afafaf;
-`;
-
-const InputText = styled.div`
-  display: flex;
+  outline: none;
   font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 14px;
-  color: #b0b7c1;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000000;
+  padding: 7px 5px;
+
+  :focus {
+    outline: none;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom: 1.8px solid #7000FF;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -74,6 +83,36 @@ const LoginPage = () => {
   const onClickBack = () => {
     navigate("/MainPage");
   };
+
+  const onClickSuccess = () => {
+    navigate("/Metronome");
+  };
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [notAllow, setNotAllow] = useState(true);
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailValid(true);
+  }
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    setPasswordValid(true);
+  }
+
+  useEffect(() => {
+    if(emailValid && passwordValid) {
+      setNotAllow(false);
+      return;
+    }
+    setNotAllow(true);
+  }, [emailValid, passwordValid]);
+
   return (
     <Layout>
       <Header>
@@ -82,14 +121,10 @@ const LoginPage = () => {
           <LoginText>로그인</LoginText>
         </IconWrapper>
       </Header>
-      <InputWrapper>
-        <InputText>이메일</InputText>
-      </InputWrapper>
-      <InputWrapper>
-        <InputText>비밀번호</InputText>
-      </InputWrapper>
+      <InputWrapper placeholder="이메일"  value={email} onChange={handleEmail}/>
+      <InputWrapper placeholder="비밀번호"  value={password} onChange={handlePassword}/>
       <ButtonWrapper>
-        <Button small>
+        <Button small disabled={notAllow}>
           <ButtonText>완료</ButtonText>
         </Button>
       </ButtonWrapper>

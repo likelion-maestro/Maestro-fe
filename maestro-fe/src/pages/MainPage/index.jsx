@@ -70,13 +70,17 @@ const MainPage = () => {
         navigate("/LoginPage");
       };
 
+    const onClickSignUp = () => {
+        navigate("/SignUpPage");
+      };
+
     return (
         <Layout>
             <ImgWrapper>
             <img src={Intro} width="177px" height="236px"/>
             </ImgWrapper>
             <LoginWrapper>
-                <EmailSignup>이메일 회원가입</EmailSignup>
+                <EmailSignup onClick={onClickSignUp}>이메일 회원가입</EmailSignup>
                 <Bar>|</Bar>
                 <EmailLogin  onClick={onClickLogin}>이메일 로그인</EmailLogin>
             </LoginWrapper>
