@@ -38,9 +38,9 @@ const Router = () => (
       <Route exact path="/LoginPage" element={<LoginPage />} />
       <Route exact path="/MainPage" element={<MainPage />} />
       <Route exact path="/SignUpPage" element={<SignUpPage />} />
+
     </Routes>
   </BrowserRouter>
 );
 
 export default Router;
-

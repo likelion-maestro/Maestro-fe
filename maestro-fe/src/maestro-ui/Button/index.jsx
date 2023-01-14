@@ -20,7 +20,7 @@ const Button = styled.button`
   }
 
   :disabled {
-    background-color: #dadada;
+    background-color: rgba(86, 75, 154, 0.5);
   }
 
   ${(props) =>

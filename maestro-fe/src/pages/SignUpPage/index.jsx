@@ -87,6 +87,7 @@ const SignUpPage = () => {
     const onClickSuccess = () => {
         navigate("/LoginPage");
       };
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -168,4 +169,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-

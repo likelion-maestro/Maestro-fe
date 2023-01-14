@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../maestro-ui/Layout";
 import Button from "../../maestro-ui/Button";
+import { useState, useEffect } from "react";
 
 const Header = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ const LoginText = styled.div`
 const InputWrapper = styled.input`
   display: flex;
   width: 330px;
-  margin-top: 88px;
+  margin-top: 68px;
   border-top-width: 0;
   border-left-width: 0;
   border-right-width: 0;
@@ -86,7 +86,33 @@ const LoginPage = () => {
 
   const onClickSuccess = () => {
     navigate("/Metronome");
+  };
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [notAllow, setNotAllow] = useState(true);
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailValid(true);
   }
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    setPasswordValid(true);
+  }
+
+  useEffect(() => {
+    if(emailValid && passwordValid) {
+      setNotAllow(false);
+      return;
+    }
+    setNotAllow(true);
+  }, [emailValid, passwordValid]);
+
   return (
     <Layout>
       <Header>
@@ -95,11 +121,11 @@ const LoginPage = () => {
           <LoginText>로그인</LoginText>
         </IconWrapper>
       </Header>
-      <InputWrapper placeholder="이메일"/>
-      <InputWrapper placeholder="비밀번호" type="password"/>
+      <InputWrapper placeholder="이메일"  value={email} onChange={handleEmail}/>
+      <InputWrapper placeholder="비밀번호"  value={password} onChange={handlePassword}/>
       <ButtonWrapper>
-        <Button small>
-          <ButtonText onClick={onClickSuccess}>완료</ButtonText>
+        <Button small disabled={notAllow}>
+          <ButtonText>완료</ButtonText>
         </Button>
       </ButtonWrapper>
       <ForgotPassword>비밀번호를 잊어버렸어요</ForgotPassword>
