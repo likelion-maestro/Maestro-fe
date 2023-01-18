@@ -24,18 +24,6 @@ const AllCircleWrapper = styled.div`
 `;
 
 const MetronomeBox = (props) => {
-  const email = localStorage.getItem("email");
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API}/user/getUser`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [email]);
-
   const arr = [
     { id: 1, check: "0.5s" },
     { id: 2, check: "1.0s" },

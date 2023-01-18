@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import Button from "../../../maestro-ui/Button";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Line = styled.div`
   position: relative;
@@ -85,8 +86,32 @@ const TeamMake = () => {
     navigate("/TeamList");
   };
 
+  //여기 건드림.
   const onClickComplete = () => {
-    navigate("/TeamList");
+    console.log("버튼 눌림");
+    let data = { teamName: content };
+    let Token = localStorage.getItem("accessToken");
+    console.log(Token);
+    let config = {
+      headers: {
+        Authorization: Token,
+      },
+    };
+
+    axios
+      .post(
+        "http://" + process.env.REACT_APP_API + "/mapping/makeTeam",
+        data,
+        config
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //navigate("/TeamList");
   };
   return (
     <Layout>

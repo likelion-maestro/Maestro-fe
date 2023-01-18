@@ -116,12 +116,15 @@ const LoginPage = () => {
       .post("http://" + process.env.REACT_APP_API + "/user/login", data)
       .then((res) => {
         console.log(res);
-        if (res.data.httpStatus == "OK") {
+        if (res.data.httpStatus === "OK") {
           console.log("로그인 성공");
-          console.log(res.data.result.accessToken);
-          console.log(res.data.result.refreshToken);
-        }
-        if (res.data.httpStatus == "FORBIDDEN") {
+          //로컬 스토리지에 accessToken key이름으로 저장
+          localStorage.setItem("accessToken", res.data.result.refreshToken);
+          console.log(localStorage.getItem("accessToken"));
+          localStorage.setItem("refreshToken", res.data.result.refreshToken);
+          console.log(localStorage.getItem("refreshToken"));
+          navigate("/Metronome");
+        } else {
           console.log("로그인 실패");
           console.log(res);
         }
