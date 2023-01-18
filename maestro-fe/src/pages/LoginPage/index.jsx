@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../maestro-ui/Layout";
 import Button from "../../maestro-ui/Button";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Header = styled.div`
   display: flex;
@@ -52,7 +53,7 @@ const InputWrapper = styled.input`
     border-top-width: 0;
     border-left-width: 0;
     border-right-width: 0;
-    border-bottom: 1.8px solid #7000FF;
+    border-bottom: 1.8px solid #7000ff;
   }
 `;
 
@@ -88,8 +89,8 @@ const LoginPage = () => {
     navigate("/Metronome");
   };
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
@@ -98,15 +99,36 @@ const LoginPage = () => {
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setEmailValid(true);
-  }
+  };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
     setPasswordValid(true);
-  }
+  };
 
+  const onClickLogin = () => {
+    const data = {
+      email: email,
+      password: password,
+    };
+    console.log(email + password);
+    axios
+      .post("http://" + process.env.REACT_APP_API + "/user/login", data)
+      .then((res) => {
+        console.log(res);
+        if (res.data.httpStatus == "OK") {
+          console.log("로그인 성공");
+          console.log(res.data.result.accessToken);
+          console.log(res.data.result.refreshToken);
+        }
+        if (res.data.httpStatus == "FORBIDDEN") {
+          console.log("로그인 실패");
+          console.log(res);
+        }
+      });
+  };
   useEffect(() => {
-    if(emailValid && passwordValid) {
+    if (emailValid && passwordValid) {
       setNotAllow(false);
       return;
     }
@@ -121,10 +143,15 @@ const LoginPage = () => {
           <LoginText>로그인</LoginText>
         </IconWrapper>
       </Header>
-      <InputWrapper placeholder="이메일"  value={email} onChange={handleEmail}/>
-      <InputWrapper placeholder="비밀번호"  value={password} onChange={handlePassword}/>
+      <InputWrapper placeholder="이메일" value={email} onChange={handleEmail} />
+      <InputWrapper
+        type="password"
+        placeholder="비밀번호"
+        value={password}
+        onChange={handlePassword}
+      />
       <ButtonWrapper>
-        <Button small disabled={notAllow}>
+        <Button small disabled={notAllow} onClick={onClickLogin}>
           <ButtonText>완료</ButtonText>
         </Button>
       </ButtonWrapper>
