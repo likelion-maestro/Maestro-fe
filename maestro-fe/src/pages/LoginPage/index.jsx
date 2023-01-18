@@ -119,7 +119,7 @@ const LoginPage = () => {
         if (res.data.httpStatus === "OK") {
           console.log("로그인 성공");
           //로컬 스토리지에 accessToken key이름으로 저장
-          localStorage.setItem("accessToken", res.data.result.refreshToken);
+          localStorage.setItem("accessToken", res.data.result.accessToken);
           console.log(localStorage.getItem("accessToken"));
           localStorage.setItem("refreshToken", res.data.result.refreshToken);
           console.log(localStorage.getItem("refreshToken"));

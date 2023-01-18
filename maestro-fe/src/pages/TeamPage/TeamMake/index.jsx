@@ -90,8 +90,8 @@ const TeamMake = () => {
   const onClickComplete = () => {
     console.log("버튼 눌림");
     let data = { teamName: content };
+
     let Token = localStorage.getItem("accessToken");
-    console.log(Token);
     let config = {
       headers: {
         Authorization: Token,
