@@ -3,6 +3,8 @@ import { AiOutlinePause } from "react-icons/ai";
 import { BsRecordCircle } from "react-icons/bs";
 import { SlControlPlay } from "react-icons/sl";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 //재생에 관련된 3개의 정보 각각 박스의 컴포넌트
 const AllBoxWrapper = styled.div`
@@ -50,16 +52,25 @@ const AlignWrapper3 = styled.div`
   margin-top: 5px;
 `;
 
-let exportStopValue = false;
-
 const PlayBox = (props) => {
-  const [stopValue, setStopValue] = useState(false);
+  const [stopValue, setStopValue] = useState(true);
+  const BPM = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const stopButtomFun = () => {
+    //true시에 재생
     setStopValue(stopValue === false ? true : false);
     console.log(stopValue);
-    exportStopValue = stopValue;
-    console.log(exportStopValue);
+    // 회의 때 이야기 해보고 수정할 부분
+    /*
+    if (stopValue === true) {
+      axios
+        .get("http://" + process.env.REACT_APP_API + "/music/getMusicInfo")
+        .then((res) => {
+          console.log(res);
+        });
+    }
+    */
   };
 
   return (
@@ -71,21 +82,27 @@ const PlayBox = (props) => {
 
         <EachBoxWrapper>
           {stopValue ? (
-            <AlignWrapper2A>
-              <AiOutlinePause
-                size="50"
-                color="#26206C"
-                onClick={stopButtomFun}
-              />
-            </AlignWrapper2A>
-          ) : (
             <AlignWrapper2B>
               <SlControlPlay
                 size="40"
                 color="#26206C"
-                onClick={stopButtomFun}
+                onClick={() => {
+                  stopButtomFun();
+                  props.setStop(true);
+                }}
               />
             </AlignWrapper2B>
+          ) : (
+            <AlignWrapper2A>
+              <AiOutlinePause
+                size="50"
+                color="#26206C"
+                onClick={() => {
+                  stopButtomFun();
+                  props.setStop(false);
+                }}
+              />
+            </AlignWrapper2A>
           )}
         </EachBoxWrapper>
 
@@ -98,5 +115,4 @@ const PlayBox = (props) => {
     </>
   );
 };
-export { exportStopValue };
 export default PlayBox;

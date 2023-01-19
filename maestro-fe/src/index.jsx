@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-
+import MetronomeBox from "./pages/Metronome/components/matronomeBox";
 var BPM = 100;
 
 const GlobalStyle = createGlobalStyle`
