@@ -5,6 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { TbSettings } from "react-icons/tb";
 import Navigate from "./../../../maestro-ui/Navigate/index";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   position: relative;
@@ -63,6 +64,7 @@ const TeamList = () => {
   const onClick2 = () => {
     navigate("/TeamEdit");
   };
+
   return (
     <Layout>
       <Header>

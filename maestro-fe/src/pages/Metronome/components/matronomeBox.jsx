@@ -3,6 +3,7 @@ import Maetromome from "./matronome";
 import { useEffect, useState } from "react";
 import { exportStopValue } from "./playBox";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 // 메트로늄 영역의 전체를 아우르는 컴포넌트
 const AllmetroWrapper = styled.div`
@@ -24,31 +25,43 @@ const AllCircleWrapper = styled.div`
 `;
 
 const MetronomeBox = (props) => {
-  const arr = [
-    { id: 1, check: "0.5s" },
-    { id: 2, check: "1.0s" },
-    { id: 3, check: "1.5s" },
-    { id: 4, check: "2.0s" },
+  const BPM = useSelector(function (state) {
+    return state;
+  });
+
+  var waitTime = 60 / BPM;
+  var duration = waitTime * 4 + "s";
+  var arr = [
+    { id: 1, check: 0 + "s" },
+    { id: 2, check: waitTime + "s" },
+    { id: 3, check: waitTime * 2 + "s" },
+    { id: 4, check: waitTime * 3 + "s" },
   ];
 
-  const arr2 = [
-    { id: 1, check: "0.5s" },
-    { id: 2, check: "1.0s" },
-    { id: 3, check: "1.5s" },
-    { id: 4, check: "2.0s" },
+  var arr2 = [
+    { id: 1, check: "0s" },
+    { id: 2, check: "0s" },
+    { id: 3, check: "0s" },
+    { id: 4, check: "0s" },
   ];
 
   const [matromomeList, setMatromomeList] = useState([]);
-
+  var stop = props.boolStop;
   useEffect(() => {
-    props.boolCheck
+    console.log(arr, BPM);
+    console.log(props.boolStop);
+    stop
       ? setMatromomeList(
-          arr.map((eachCircle) => <Maetromome delayTime={eachCircle.check} />)
+          arr.map((eachCircle) => (
+            <Maetromome delayTime={eachCircle.check} duration={duration} />
+          ))
         )
       : setMatromomeList(
-          arr2.map((eachCircle) => <Maetromome delayTime={eachCircle.check} />)
+          arr2.map((eachCircle) => (
+            <Maetromome delayTime={eachCircle.check} duration={duration} />
+          ))
         );
-  }, []);
+  }, [BPM, stop]);
 
   return (
     <>

@@ -86,7 +86,10 @@ const PlayBox = (props) => {
               <SlControlPlay
                 size="40"
                 color="#26206C"
-                onClick={stopButtomFun}
+                onClick={() => {
+                  stopButtomFun();
+                  props.setStop(true);
+                }}
               />
             </AlignWrapper2B>
           ) : (
@@ -94,7 +97,10 @@ const PlayBox = (props) => {
               <AiOutlinePause
                 size="50"
                 color="#26206C"
-                onClick={stopButtomFun}
+                onClick={() => {
+                  stopButtomFun();
+                  props.setStop(false);
+                }}
               />
             </AlignWrapper2A>
           )}

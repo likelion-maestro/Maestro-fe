@@ -22,14 +22,14 @@ const Circle = styled.div`
   background-color: #26206c;
   outline: 3px solid #26206c;
   border-radius: 100%;
-  animation: ${animation} 2s ease-in-out infinite;
+  animation: ${animation} ${(props) => props.duration} ease-in-out infinite;
   animation-delay: ${(props) => props.delayTime};
 `;
 
 const Maetromome = (props) => {
   return (
     <>
-      <Circle delayTime={props.delayTime}></Circle>
+      <Circle delayTime={props.delayTime} duration={props.duration}></Circle>
     </>
   );
 };
